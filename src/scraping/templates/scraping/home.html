@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}Scraping{% endblock title %}
+
+{% block content %}
+    <div class="row">
+        <div class="col">
+            <h1 class="text-center">Vacancies</h1>
+        </div>
+    </div>
+
+    <div class="row">
+
+        {% for obj in object_list %}
+        <div class="col-4">
+            <div class="card text-center my-3">
+                <div class="card-header">
+                    {{ obj.title }}
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ obj.company }}</h5>
+                    <p class="card-text">{{ obj.description }}</p>
+
+
+                </div>
+                <div class="card-footer text-muted">
+                    <span class="card-subtitle">{{ obj.city.name }} |</span>
+                    <span class="card-subtitle">{{ obj.language.name }} |</span>
+                    <span>{{ obj.timestamp|date:"d-M-Y" }}</span>
+                </div>
+            </div>
+
+            </div>
+        {% empty %}
+        <h3 class="text-center">Unfortunately, there is nothing find!</h3>
+        {% endfor %}
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <form method="GET" action="">
+                <div class="form-row my-3">
+                    <div class="form-group">
+                        {{ form.as_p }}
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" type="submit">Find</button>
+
+            </form>
+        </div>
+    </div>
+
+{% endblock content %}
+
+
+
+
+
